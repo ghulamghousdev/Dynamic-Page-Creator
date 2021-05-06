@@ -2,7 +2,7 @@
   align-items: center;
   display: block;
   position: absolute;
-  top: 50%;
+  top: 59%;
   left: 47%;
   transform: translate(-50%, -50%);
   max-width: 400px;
@@ -11,8 +11,11 @@
   text-align: center;
 }
 .heading {
+  width: 120%;
   font-weight: 500;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+  font-size: 19px;
+  text-align: center;
 }
 
 .inputField {
@@ -27,12 +30,14 @@
 .btn {
   width: 120%;
   padding: 8px;
+  font-weight: normal;
   cursor: pointer;
   border: 1px solid #ffa500;
   background-color: #ffa500;
   font-size: 15px;
   border-radius: 5px;
   color: #ffffff;
+  margin-top: 10px;
   margin-bottom: 20px;
   transition: 0.3s;
 }

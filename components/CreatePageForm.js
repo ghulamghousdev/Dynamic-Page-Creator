@@ -28,9 +28,13 @@ class CreatePage extends React.Component {
       };
       const res = await axios.post("/api/pages", body, config);
       console.log(res);
+      this.setState({
+        name: "",
+      });
       e.target.elements.name.value = "";
+      alert("Page Created Successfully");
     } catch (err) {
-      console.log(err);
+      alert(err);
     }
   };
   render() {
@@ -46,19 +50,20 @@ class CreatePage extends React.Component {
         </div>
         <div className={Styles.flexCenter}>
           <div className={Styles.authContainer}>
+            <div className={Styles.heading}>Crete New Page</div>
             <form className={Styles.createForm} onSubmit={this.submitHanler}>
               <input
                 className={Styles.inputField}
                 type="text"
                 name="name"
-                placeholder="Name"
+                placeholder="Enter the page name"
                 onChange={this.changeHandler}
               />
               <input
                 className={Styles.btn}
                 type="submit"
                 name="submit"
-                value="Create"
+                value="Create Page"
               />
             </form>
           </div>
