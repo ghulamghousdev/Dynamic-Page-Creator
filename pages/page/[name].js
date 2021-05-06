@@ -3,6 +3,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Styles from "./[name].module.css";
 import Link from "next/link";
+// or
 
 const Getquerypage = ({ pageuser }) => {
   const [pageName, setPageName] = useState("");
@@ -39,6 +40,14 @@ const Getquerypage = ({ pageuser }) => {
     const router = useRouter();
     e.preventDefault();
     router.push("/list");
+  };
+
+  const generate = (e) => {
+    alert(
+      "https://mennwebapp.page.link/? link=https%3A%2F%2Fmenn-web-app.vercel.app%2Fpage%2F" +
+        pageID +
+        "&apn=com.instagram.android[][]"
+    );
   };
   const createpage = (e) => {
     const router = useRouter();
@@ -93,12 +102,9 @@ const Getquerypage = ({ pageuser }) => {
             />
           </div>
           <div>
-            <input
-              className={Styles.btnSend}
-              type="submit"
-              name="submit"
-              value="Send Notifications"
-            />
+            <button className={Styles.btnSend} onClick={generate}>
+              Send Notification
+            </button>
           </div>
         </div>
       </div>

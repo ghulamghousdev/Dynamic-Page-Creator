@@ -3,7 +3,6 @@ import Styles from "./CreatePageForm.module.css";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import ImageAddToPhotos from "material-ui/svg-icons/image/add-to-photos";
 
 class CreatePage extends React.Component {
   state = {
