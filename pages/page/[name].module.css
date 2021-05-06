@@ -74,6 +74,8 @@
   font-size: 28px;
   font-weight: 600;
   color: #ffa500;
+
+  margin-top: 15px;
   margin-left: 50px;
   margin-right: 20px;
 }
@@ -84,4 +86,35 @@
 .row1 {
   width: 80%;
   margin: 0 auto;
+}
+
+.menu {
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.menuItem {
+  margin-right: 10px;
+  margin-left: 10px;
+  height: max-content;
+  color: #ffa500;
+}
+
+.navbtn {
+  padding: 8px 20px;
+  border: 1px solid white;
+  text-decoration: none;
+  color: #ffffff;
+  display: block;
+  border-radius: 3px;
+
+  border-color: #ffa500;
+
+  transition: 0.3s;
+}
+.navbtn:hover {
+  border-color: #ffa500;
+  color: #ffa500;
 }

@@ -1,21 +1,22 @@
 import React, { Fragment } from "react";
-import Styles from "./CreatePageForm.module.css";
+import Styles from "./PagesList.module.css";
 import axios from "axios";
+import PagesListItem from "./PagesListItem";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import ImageAddToPhotos from "material-ui/svg-icons/image/add-to-photos";
 
 class CreatePage extends React.Component {
-  state = {
-    name: "",
-  };
+  constructor() {
+    super();
+    this.fetchData = this.fetchData.bind(this);
+    this.state = {
+      pages: [],
+    };
+  }
 
-  changeHandler = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
-
+  componentDidMount() {
+    this.fetchData();
+  }
   pages = (e) => {
     const router = useRouter();
     e.preventDefault();
@@ -26,26 +27,21 @@ class CreatePage extends React.Component {
     e.preventDefault();
     router.push("/");
   };
-  submitHanler = async (e) => {
-    e.preventDefault();
-    const pagename = e.target.elements.name.value;
-    const obj = {
-      pagename,
-    };
+
+  fetchData = async (e) => {
     try {
-      const body = JSON.stringify(obj);
       const config = {
         headers: {
           "Content-Type": "Application/json",
         },
       };
-      const res = await axios.post("/api/pages", body, config);
+      const res = await axios.get("/api/getAllPages", config);
       console.log(res);
-      this.setState({
-        name: "",
+      this.setState((prevState, props) => {
+        return {
+          pages: prevState.pages.concat(res.data),
+        };
       });
-      e.target.elements.name.value = "";
-      alert("Page Created Successfully");
     } catch (err) {
       alert(err);
     }
@@ -66,31 +62,19 @@ class CreatePage extends React.Component {
                 </Link>
               </li>
               <li className={Styles.menuItem}>
-                <Link onClick={this.createpages} href="/">
+                <Link onclick={this.createpage} href="/">
                   <a className={Styles.navbtn}>Create</a>
                 </Link>
               </li>
             </ul>
           </div>
         </div>
-        <div className={Styles.flexCenter}>
-          <div className={Styles.authContainer}>
-            <div className={Styles.heading}>Crete New Page</div>
-            <form className={Styles.createForm} onSubmit={this.submitHanler}>
-              <input
-                className={Styles.inputField}
-                type="text"
-                name="name"
-                placeholder="Enter the page name"
-                onChange={this.changeHandler}
-              />
-              <input
-                className={Styles.btn}
-                type="submit"
-                name="submit"
-                value="Create Page"
-              />
-            </form>
+        <div className={Styles.bx}>
+          <div className={Styles.boxMargin}>
+            <h1 className={Styles.heading}>All Pages</h1>
+            {this.state.pages.map((cur) => (
+              <PagesListItem pagename={cur.pagename} key={cur._id} />
+            ))}
           </div>
         </div>
       </Fragment>

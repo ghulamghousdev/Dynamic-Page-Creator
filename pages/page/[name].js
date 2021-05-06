@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Styles from "./[name].module.css";
+import Link from "next/link";
 
 const Getquerypage = ({ pageuser }) => {
   const [pageName, setPageName] = useState("");
@@ -34,6 +35,16 @@ const Getquerypage = ({ pageuser }) => {
       console.log(e);
     }
   };
+  const pages = (e) => {
+    const router = useRouter();
+    e.preventDefault();
+    router.push("/list");
+  };
+  const createpage = (e) => {
+    const router = useRouter();
+    e.preventDefault();
+    router.push("/");
+  };
 
   return (
     <Fragment>
@@ -43,6 +54,28 @@ const Getquerypage = ({ pageuser }) => {
             Create
             <span className={Styles.logoHighlighted}>Pages</span>
           </div>
+          <ul className={Styles.menu}>
+            <li className={Styles.menuItem}>
+              <Link
+                onClick={(e) => {
+                  e.pages();
+                }}
+                href="/list"
+              >
+                <a className={Styles.navbtn}>Pages</a>
+              </Link>
+            </li>
+            <li className={Styles.menuItem}>
+              <Link
+                onclick={(e) => {
+                  e.createpage();
+                }}
+                href="/"
+              >
+                <a className={Styles.navbtn}>Create</a>
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
       <div className={Styles.FlexContainer}>
